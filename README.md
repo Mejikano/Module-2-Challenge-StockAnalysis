@@ -12,14 +12,15 @@ Additionally the run time will be a factor to support future analysis as larger 
 
 ## Analysis and Results
 
-###Stock Performance (General Insight) 
+### Stock Performance (General Insight) 
+
 According to the Analysis results 2017 was a better year for the Green Energy industry, the majority of the stocks had a positive and significant return of investment.
 ENPH was the best performer taking in consideration both years: 2017 & 2018; DQ had a great 2017 year with high returns but wasn't the case for 2018 (Hope that Steve's parents invested just that year before their due diligence request)
 
 ![Refactored VBA Code 2017 Results & Run Time](https://github.com/Mejikano/Module-2-Challenge-StockAnalysis/blob/main/Resources/VBA_Challenge_2017.PNG)
 ![Refactored VBA Code 2018 Results & Run Time](https://github.com/Mejikano/Module-2-Challenge-StockAnalysis/blob/main/Resources/VBA_Challenge_2018.PNG)
 
-###Code Performance
+### Code Performance
 Comparing the refactored code performance versus the original code is evident that the times of iterating throughout the dataset records plays a key role on performance the less you iterate the most computing cycles are saved and performs better!
 
 Following images show the original code run times for both 2017 and 2018. 
@@ -127,14 +128,14 @@ Why performance is so different?
 
 
 
-##Summary
+## Summary
 
-###Original Code
+### Original Code
 The original code is inefficient as it iterates the full data set by the number of tickers; this is the major concern for the overall program and might cause performance issues with larger set of data.
 One very quick refactor improvement could be to exit the loop when the end price for a given ticker is identified "break for loop" so the rest of the rows/entries are not iterated, and it would improve performance and reduce the number of times that the data set is read 
 However I would argue too that this is not an elegant way to fix the performance concern (still code smell) and neither a better option for performing better as it the following refactoring was.   
 
-###Refactored Code
+### Refactored Code
 
 **The way of reading the rows of data is the main advantage**
 This refactored program significantly improves performance by reading the full dataset only once which definitely addresses the original code performance problem
@@ -142,10 +143,10 @@ However, I would list the following issues to be considered for future refactor 
 
 **General disadvantages for both: Original Code and Refactored Code**
 
-	1) Programs assume that the dataset contains rows/entries coming in order by ticker and descending dates which is unlike to happen for other years. This might cause:
+	1.Programs assume that the dataset contains rows/entries coming in order by ticker and descending dates which is unlike to happen for other years. This might cause:
 		-Wrong start and end price or unhandled exceptions
 		Proposed solution: this could be easily solved if the macro sorts by ticker (Column A) and date (Column B) at the beginning  of the program.
-	2)The tickers are hardcoded; therefore the arrays contain magic numbers when tickers might be different for other years analysis i.e. New Green Energy companies may start trading on the stock market
+	2.The tickers are hardcoded; therefore the arrays contain magic numbers when tickers might be different for other years analysis i.e. New Green Energy companies may start trading on the stock market
 		-This would cause wrong analysis excluding new companies 
 		Proposed solution: Dynamically create an array and determine the value by a DISTINCT formula/method/function to identify the number of tickers on the dataset and their names.
 	
@@ -162,7 +163,7 @@ However, I would list the following issues to be considered for future refactor 
 				ReDim tickerEndingPrices(numoftickers)
 			```
 
-	3)The program does not handle errors i.e.
+	3.The program does not handle errors i.e.
 		-Division by 0 will cause an exception/error - Start price could be 0, specially for new companies trading on the stock market
 		-Inputting sheet names with different format and/or non-existing sheets 
 	
