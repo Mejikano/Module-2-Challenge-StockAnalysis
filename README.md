@@ -143,14 +143,15 @@ However, I would list the following issues to be considered for future refactor 
 
 **General disadvantages for both: Original Code and Refactored Code**
 
-	1.Programs assume that the dataset contains rows/entries coming in order by ticker and descending dates which is unlike to happen for other years. This might cause:
+1.Programs assume that the dataset contains rows/entries coming in order by ticker and descending dates which is unlike to happen for other years. This might cause:
 		- Wrong start and end price or unhandled exceptions
 		Proposed solution: this could be easily solved if the macro sorts by ticker (Column A) and date (Column B) at the beginning  of the program.
-	2.The tickers are hardcoded; therefore the arrays contain magic numbers when tickers might be different for other years analysis i.e. New Green Energy companies may start trading on the stock market
+		
+2.The tickers are hardcoded; therefore the arrays contain magic numbers when tickers might be different for other years analysis i.e. New Green Energy companies may start trading on the stock market
 		- This would cause wrong analysis excluding new companies 
 		Proposed solution: Dynamically create an array and determine the value by a DISTINCT formula/method/function to identify the number of tickers on the dataset and their names.
 	
-			i.e. Below snippet demonstrates how arrays could be refactored to be dynamics
+		i.e. Below snippet demonstrates how arrays could be refactored to be dynamics
 			```
 			'Good dynamically VBA arrays reference @Stackoverflow: https://stackoverflow.com/questions/4326678/dynamically-dimensioning-a-vba-array
 			    Dim tickerVolumes() As Long
@@ -163,13 +164,13 @@ However, I would list the following issues to be considered for future refactor 
 				ReDim tickerEndingPrices(numoftickers)
 			```
 
-	3.The program does not handle errors i.e.
+3.The program does not handle errors i.e.
 		- Division by 0 will cause an exception/error - Start price could be 0, specially for new companies trading on the stock market
 		- Inputting sheet names with different format and/or non-existing sheets 
 	
 		Proposed solution: 
-			-Division by 0 can be handled catching errors or a similar approach as of the IFERROR formula learned before.
-			-Write a code for checking whether given input sheet name exist before executing the next code steps; display an error message if it does not exist
+			- Division by 0 can be handled catching errors or a similar approach as of the IFERROR formula learned before.
+			- Write a code for checking whether given input sheet name exist before executing the next code steps; display an error message if it does not exist
 	
 
 
